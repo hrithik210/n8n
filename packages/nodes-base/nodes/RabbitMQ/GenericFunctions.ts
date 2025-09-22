@@ -62,7 +62,7 @@ export async function rabbitmqCreateChannel(
 	});
 }
 
-export const parseAssertOptionArguments = (options: Options | TriggerOptions) => {
+export const parseAssertOptionArguments = (options: Options | TriggerOptions): IDataObject => {
 	const args: IDataObject = {};
 	if (options.arguments?.argument?.length) {
 		for (const { key, value } of options.arguments.argument) {
@@ -83,7 +83,7 @@ export async function rabbitmqConnectQueue(
 		try {
 			if (options.assertQueue) {
 				const queueArgs = parseAssertOptionArguments(options);
-				const assertOptions = {
+				const assertOptions: amqplib.Options.AssertQueue = {
 					durable: options.durable,
 					autoDelete: options.autoDelete,
 					exclusive: options.exclusive,
